@@ -32,6 +32,7 @@ server.express.use(async (req, res, next) => {
 
 const port = process.env.PORT || 3000;
 
+//start it
 server.start(
   port,
   {
