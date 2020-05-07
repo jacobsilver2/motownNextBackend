@@ -1,0 +1,75 @@
+enum Permission {
+  ADMIN
+  USER
+  SONGUPDATE
+  SONGDELETE
+  PERMISSIONUPDATE
+}
+
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission] @scalarList(strategy: RELATION)
+}
+type Song {
+  id: ID! @id
+  title: String!
+  composer: [Composer!]!
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  artists: [Artist!]! 
+  albums: [Album!]! 
+  recordings: [Recording!]! 
+}
+
+type Artist {
+  id: ID! @id
+  name: String! @unique
+  songs: [Song!]! 
+  albums: [Album!]!
+  recordings: [Recording!]!
+}
+
+type Album {
+  id: ID! @id
+  title: String
+  catalogNumber: String
+  format: String
+  info: String @unique
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean!
+  songs: [Song!]! 
+  artists: [Artist!]!
+  recordings: [Recording!]!
+}
+
+type Recording {
+  id: ID! @id
+  producer: String
+  location: String
+  completed: DateTime
+  artist: Artist 
+  song: Song! 
+  albums: [Album!]!
+}
+
+type Composer {
+  id: ID! @id
+  name: String @unique
+  songs: [Song!]!
+}
+
+type Producer {
+  id: ID! @id
+  name: String
+  recordings: [Recording!]!
+}

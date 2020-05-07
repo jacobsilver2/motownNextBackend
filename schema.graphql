@@ -1,0 +1,90 @@
+# import * from './generated/prisma.graphql'
+
+type SuccessMessage {
+  message: String
+}
+
+type Mutation {
+  createSong(
+    title: String!
+    publisher: String
+    publishedDate: DateTime
+    altTitle: String
+    fromFilm: String
+    tribute: String
+  ): Song!
+  updateSong(
+    id: ID!
+    title: String!
+    publisher: String
+    altTitle: String
+    fromFilm: String
+    tribute: String
+  ): Song!
+  deleteSong(id: ID!): Song
+  createArtist(name: String!): Artist!
+  updateArtist(id: ID!, name: String!): Artist!
+  deleteArtist(id: ID!): Artist
+  createAlbum(
+    title: String
+    catalogNumber: String
+    format: String
+    info: String
+    releaseDate: DateTime
+    recordLabel: String
+  ): Album!
+  updateAlbum(
+    id: ID!
+    title: String
+    catalogNumber: String
+    format: String
+    info: String
+    releaseDate: DateTime
+    recordLabel: String
+  ): Album!
+  joinTwoSingles(albumOneId: ID!, albumTwoId: ID!): Album!
+  turnSingleIntoAlbum(id: ID!): Album!
+  deleteAlbum(id: ID!): Album
+  createComposer(name: String): Composer!
+  updateComposer(id: ID!, name: String): Composer!
+  deleteComposer(id: ID!): Composer
+  signup(email: String!, password: String!, name: String!): User!
+  signin(email: String!, password: String!): User!
+  signout: SuccessMessage
+}
+
+type Query {
+  songs(
+    where: SongWhereInput
+    orderBy: SongOrderByInput
+    skip: Int
+    first: Int
+  ): [Song]!
+  artists(
+    where: ArtistWhereInput
+    orderBy: ArtistOrderByInput
+    skip: Int
+    first: Int
+  ): [Artist]!
+  albums(
+    where: AlbumWhereInput
+    orderBy: AlbumOrderByInput
+    skip: Int
+    first: Int
+  ): [Album]!
+  composers(
+    where: ComposerWhereInput
+    orderBy: ComposerOrderByInput
+    skip: Int
+    first: Int
+  ): [Composer]!
+  song(where: SongWhereUniqueInput!): Song
+  artist(where: ArtistWhereUniqueInput!): Artist
+  album(where: AlbumWhereUniqueInput!): Album
+  composer(where: ComposerWhereUniqueInput): Composer
+  songsConnection(where: SongWhereInput): SongConnection!
+  artistsConnection(where: ArtistWhereInput): ArtistConnection!
+  albumsConnection(where: AlbumWhereInput): AlbumConnection!
+  composersConnection(where: ComposerWhereInput): ComposerConnection!
+  me: User
+}

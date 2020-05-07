@@ -1,0 +1,2326 @@
+type AggregateAlbum {
+  count: Int!
+}
+
+type AggregateArtist {
+  count: Int!
+}
+
+type AggregateComposer {
+  count: Int!
+}
+
+type AggregateProducer {
+  count: Int!
+}
+
+type AggregateRecording {
+  count: Int!
+}
+
+type AggregateSong {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type Album {
+  id: ID!
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean!
+  songs(where: SongWhereInput, orderBy: SongOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Song!]
+  artists(where: ArtistWhereInput, orderBy: ArtistOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Artist!]
+  recordings(where: RecordingWhereInput, orderBy: RecordingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recording!]
+}
+
+type AlbumConnection {
+  pageInfo: PageInfo!
+  edges: [AlbumEdge]!
+  aggregate: AggregateAlbum!
+}
+
+input AlbumCreateInput {
+  id: ID
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean!
+  songs: SongCreateManyWithoutAlbumsInput
+  artists: ArtistCreateManyWithoutAlbumsInput
+  recordings: RecordingCreateManyWithoutAlbumsInput
+}
+
+input AlbumCreateManyWithoutArtistsInput {
+  create: [AlbumCreateWithoutArtistsInput!]
+  connect: [AlbumWhereUniqueInput!]
+}
+
+input AlbumCreateManyWithoutRecordingsInput {
+  create: [AlbumCreateWithoutRecordingsInput!]
+  connect: [AlbumWhereUniqueInput!]
+}
+
+input AlbumCreateManyWithoutSongsInput {
+  create: [AlbumCreateWithoutSongsInput!]
+  connect: [AlbumWhereUniqueInput!]
+}
+
+input AlbumCreateWithoutArtistsInput {
+  id: ID
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean!
+  songs: SongCreateManyWithoutAlbumsInput
+  recordings: RecordingCreateManyWithoutAlbumsInput
+}
+
+input AlbumCreateWithoutRecordingsInput {
+  id: ID
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean!
+  songs: SongCreateManyWithoutAlbumsInput
+  artists: ArtistCreateManyWithoutAlbumsInput
+}
+
+input AlbumCreateWithoutSongsInput {
+  id: ID
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean!
+  artists: ArtistCreateManyWithoutAlbumsInput
+  recordings: RecordingCreateManyWithoutAlbumsInput
+}
+
+type AlbumEdge {
+  node: Album!
+  cursor: String!
+}
+
+enum AlbumOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  catalogNumber_ASC
+  catalogNumber_DESC
+  format_ASC
+  format_DESC
+  info_ASC
+  info_DESC
+  releaseDate_ASC
+  releaseDate_DESC
+  recordLabel_ASC
+  recordLabel_DESC
+  single_ASC
+  single_DESC
+}
+
+type AlbumPreviousValues {
+  id: ID!
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean!
+}
+
+input AlbumScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  catalogNumber: String
+  catalogNumber_not: String
+  catalogNumber_in: [String!]
+  catalogNumber_not_in: [String!]
+  catalogNumber_lt: String
+  catalogNumber_lte: String
+  catalogNumber_gt: String
+  catalogNumber_gte: String
+  catalogNumber_contains: String
+  catalogNumber_not_contains: String
+  catalogNumber_starts_with: String
+  catalogNumber_not_starts_with: String
+  catalogNumber_ends_with: String
+  catalogNumber_not_ends_with: String
+  format: String
+  format_not: String
+  format_in: [String!]
+  format_not_in: [String!]
+  format_lt: String
+  format_lte: String
+  format_gt: String
+  format_gte: String
+  format_contains: String
+  format_not_contains: String
+  format_starts_with: String
+  format_not_starts_with: String
+  format_ends_with: String
+  format_not_ends_with: String
+  info: String
+  info_not: String
+  info_in: [String!]
+  info_not_in: [String!]
+  info_lt: String
+  info_lte: String
+  info_gt: String
+  info_gte: String
+  info_contains: String
+  info_not_contains: String
+  info_starts_with: String
+  info_not_starts_with: String
+  info_ends_with: String
+  info_not_ends_with: String
+  releaseDate: DateTime
+  releaseDate_not: DateTime
+  releaseDate_in: [DateTime!]
+  releaseDate_not_in: [DateTime!]
+  releaseDate_lt: DateTime
+  releaseDate_lte: DateTime
+  releaseDate_gt: DateTime
+  releaseDate_gte: DateTime
+  recordLabel: String
+  recordLabel_not: String
+  recordLabel_in: [String!]
+  recordLabel_not_in: [String!]
+  recordLabel_lt: String
+  recordLabel_lte: String
+  recordLabel_gt: String
+  recordLabel_gte: String
+  recordLabel_contains: String
+  recordLabel_not_contains: String
+  recordLabel_starts_with: String
+  recordLabel_not_starts_with: String
+  recordLabel_ends_with: String
+  recordLabel_not_ends_with: String
+  single: Boolean
+  single_not: Boolean
+  AND: [AlbumScalarWhereInput!]
+  OR: [AlbumScalarWhereInput!]
+  NOT: [AlbumScalarWhereInput!]
+}
+
+type AlbumSubscriptionPayload {
+  mutation: MutationType!
+  node: Album
+  updatedFields: [String!]
+  previousValues: AlbumPreviousValues
+}
+
+input AlbumSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AlbumWhereInput
+  AND: [AlbumSubscriptionWhereInput!]
+  OR: [AlbumSubscriptionWhereInput!]
+  NOT: [AlbumSubscriptionWhereInput!]
+}
+
+input AlbumUpdateInput {
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean
+  songs: SongUpdateManyWithoutAlbumsInput
+  artists: ArtistUpdateManyWithoutAlbumsInput
+  recordings: RecordingUpdateManyWithoutAlbumsInput
+}
+
+input AlbumUpdateManyDataInput {
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean
+}
+
+input AlbumUpdateManyMutationInput {
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean
+}
+
+input AlbumUpdateManyWithoutArtistsInput {
+  create: [AlbumCreateWithoutArtistsInput!]
+  delete: [AlbumWhereUniqueInput!]
+  connect: [AlbumWhereUniqueInput!]
+  set: [AlbumWhereUniqueInput!]
+  disconnect: [AlbumWhereUniqueInput!]
+  update: [AlbumUpdateWithWhereUniqueWithoutArtistsInput!]
+  upsert: [AlbumUpsertWithWhereUniqueWithoutArtistsInput!]
+  deleteMany: [AlbumScalarWhereInput!]
+  updateMany: [AlbumUpdateManyWithWhereNestedInput!]
+}
+
+input AlbumUpdateManyWithoutRecordingsInput {
+  create: [AlbumCreateWithoutRecordingsInput!]
+  delete: [AlbumWhereUniqueInput!]
+  connect: [AlbumWhereUniqueInput!]
+  set: [AlbumWhereUniqueInput!]
+  disconnect: [AlbumWhereUniqueInput!]
+  update: [AlbumUpdateWithWhereUniqueWithoutRecordingsInput!]
+  upsert: [AlbumUpsertWithWhereUniqueWithoutRecordingsInput!]
+  deleteMany: [AlbumScalarWhereInput!]
+  updateMany: [AlbumUpdateManyWithWhereNestedInput!]
+}
+
+input AlbumUpdateManyWithoutSongsInput {
+  create: [AlbumCreateWithoutSongsInput!]
+  delete: [AlbumWhereUniqueInput!]
+  connect: [AlbumWhereUniqueInput!]
+  set: [AlbumWhereUniqueInput!]
+  disconnect: [AlbumWhereUniqueInput!]
+  update: [AlbumUpdateWithWhereUniqueWithoutSongsInput!]
+  upsert: [AlbumUpsertWithWhereUniqueWithoutSongsInput!]
+  deleteMany: [AlbumScalarWhereInput!]
+  updateMany: [AlbumUpdateManyWithWhereNestedInput!]
+}
+
+input AlbumUpdateManyWithWhereNestedInput {
+  where: AlbumScalarWhereInput!
+  data: AlbumUpdateManyDataInput!
+}
+
+input AlbumUpdateWithoutArtistsDataInput {
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean
+  songs: SongUpdateManyWithoutAlbumsInput
+  recordings: RecordingUpdateManyWithoutAlbumsInput
+}
+
+input AlbumUpdateWithoutRecordingsDataInput {
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean
+  songs: SongUpdateManyWithoutAlbumsInput
+  artists: ArtistUpdateManyWithoutAlbumsInput
+}
+
+input AlbumUpdateWithoutSongsDataInput {
+  title: String
+  catalogNumber: String
+  format: String
+  info: String
+  releaseDate: DateTime
+  recordLabel: String
+  single: Boolean
+  artists: ArtistUpdateManyWithoutAlbumsInput
+  recordings: RecordingUpdateManyWithoutAlbumsInput
+}
+
+input AlbumUpdateWithWhereUniqueWithoutArtistsInput {
+  where: AlbumWhereUniqueInput!
+  data: AlbumUpdateWithoutArtistsDataInput!
+}
+
+input AlbumUpdateWithWhereUniqueWithoutRecordingsInput {
+  where: AlbumWhereUniqueInput!
+  data: AlbumUpdateWithoutRecordingsDataInput!
+}
+
+input AlbumUpdateWithWhereUniqueWithoutSongsInput {
+  where: AlbumWhereUniqueInput!
+  data: AlbumUpdateWithoutSongsDataInput!
+}
+
+input AlbumUpsertWithWhereUniqueWithoutArtistsInput {
+  where: AlbumWhereUniqueInput!
+  update: AlbumUpdateWithoutArtistsDataInput!
+  create: AlbumCreateWithoutArtistsInput!
+}
+
+input AlbumUpsertWithWhereUniqueWithoutRecordingsInput {
+  where: AlbumWhereUniqueInput!
+  update: AlbumUpdateWithoutRecordingsDataInput!
+  create: AlbumCreateWithoutRecordingsInput!
+}
+
+input AlbumUpsertWithWhereUniqueWithoutSongsInput {
+  where: AlbumWhereUniqueInput!
+  update: AlbumUpdateWithoutSongsDataInput!
+  create: AlbumCreateWithoutSongsInput!
+}
+
+input AlbumWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  catalogNumber: String
+  catalogNumber_not: String
+  catalogNumber_in: [String!]
+  catalogNumber_not_in: [String!]
+  catalogNumber_lt: String
+  catalogNumber_lte: String
+  catalogNumber_gt: String
+  catalogNumber_gte: String
+  catalogNumber_contains: String
+  catalogNumber_not_contains: String
+  catalogNumber_starts_with: String
+  catalogNumber_not_starts_with: String
+  catalogNumber_ends_with: String
+  catalogNumber_not_ends_with: String
+  format: String
+  format_not: String
+  format_in: [String!]
+  format_not_in: [String!]
+  format_lt: String
+  format_lte: String
+  format_gt: String
+  format_gte: String
+  format_contains: String
+  format_not_contains: String
+  format_starts_with: String
+  format_not_starts_with: String
+  format_ends_with: String
+  format_not_ends_with: String
+  info: String
+  info_not: String
+  info_in: [String!]
+  info_not_in: [String!]
+  info_lt: String
+  info_lte: String
+  info_gt: String
+  info_gte: String
+  info_contains: String
+  info_not_contains: String
+  info_starts_with: String
+  info_not_starts_with: String
+  info_ends_with: String
+  info_not_ends_with: String
+  releaseDate: DateTime
+  releaseDate_not: DateTime
+  releaseDate_in: [DateTime!]
+  releaseDate_not_in: [DateTime!]
+  releaseDate_lt: DateTime
+  releaseDate_lte: DateTime
+  releaseDate_gt: DateTime
+  releaseDate_gte: DateTime
+  recordLabel: String
+  recordLabel_not: String
+  recordLabel_in: [String!]
+  recordLabel_not_in: [String!]
+  recordLabel_lt: String
+  recordLabel_lte: String
+  recordLabel_gt: String
+  recordLabel_gte: String
+  recordLabel_contains: String
+  recordLabel_not_contains: String
+  recordLabel_starts_with: String
+  recordLabel_not_starts_with: String
+  recordLabel_ends_with: String
+  recordLabel_not_ends_with: String
+  single: Boolean
+  single_not: Boolean
+  songs_every: SongWhereInput
+  songs_some: SongWhereInput
+  songs_none: SongWhereInput
+  artists_every: ArtistWhereInput
+  artists_some: ArtistWhereInput
+  artists_none: ArtistWhereInput
+  recordings_every: RecordingWhereInput
+  recordings_some: RecordingWhereInput
+  recordings_none: RecordingWhereInput
+  AND: [AlbumWhereInput!]
+  OR: [AlbumWhereInput!]
+  NOT: [AlbumWhereInput!]
+}
+
+input AlbumWhereUniqueInput {
+  id: ID
+  info: String
+}
+
+type Artist {
+  id: ID!
+  name: String!
+  songs(where: SongWhereInput, orderBy: SongOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Song!]
+  albums(where: AlbumWhereInput, orderBy: AlbumOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Album!]
+  recordings(where: RecordingWhereInput, orderBy: RecordingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recording!]
+}
+
+type ArtistConnection {
+  pageInfo: PageInfo!
+  edges: [ArtistEdge]!
+  aggregate: AggregateArtist!
+}
+
+input ArtistCreateInput {
+  id: ID
+  name: String!
+  songs: SongCreateManyWithoutArtistsInput
+  albums: AlbumCreateManyWithoutArtistsInput
+  recordings: RecordingCreateManyWithoutArtistInput
+}
+
+input ArtistCreateManyWithoutAlbumsInput {
+  create: [ArtistCreateWithoutAlbumsInput!]
+  connect: [ArtistWhereUniqueInput!]
+}
+
+input ArtistCreateManyWithoutSongsInput {
+  create: [ArtistCreateWithoutSongsInput!]
+  connect: [ArtistWhereUniqueInput!]
+}
+
+input ArtistCreateOneWithoutRecordingsInput {
+  create: ArtistCreateWithoutRecordingsInput
+  connect: ArtistWhereUniqueInput
+}
+
+input ArtistCreateWithoutAlbumsInput {
+  id: ID
+  name: String!
+  songs: SongCreateManyWithoutArtistsInput
+  recordings: RecordingCreateManyWithoutArtistInput
+}
+
+input ArtistCreateWithoutRecordingsInput {
+  id: ID
+  name: String!
+  songs: SongCreateManyWithoutArtistsInput
+  albums: AlbumCreateManyWithoutArtistsInput
+}
+
+input ArtistCreateWithoutSongsInput {
+  id: ID
+  name: String!
+  albums: AlbumCreateManyWithoutArtistsInput
+  recordings: RecordingCreateManyWithoutArtistInput
+}
+
+type ArtistEdge {
+  node: Artist!
+  cursor: String!
+}
+
+enum ArtistOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type ArtistPreviousValues {
+  id: ID!
+  name: String!
+}
+
+input ArtistScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [ArtistScalarWhereInput!]
+  OR: [ArtistScalarWhereInput!]
+  NOT: [ArtistScalarWhereInput!]
+}
+
+type ArtistSubscriptionPayload {
+  mutation: MutationType!
+  node: Artist
+  updatedFields: [String!]
+  previousValues: ArtistPreviousValues
+}
+
+input ArtistSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ArtistWhereInput
+  AND: [ArtistSubscriptionWhereInput!]
+  OR: [ArtistSubscriptionWhereInput!]
+  NOT: [ArtistSubscriptionWhereInput!]
+}
+
+input ArtistUpdateInput {
+  name: String
+  songs: SongUpdateManyWithoutArtistsInput
+  albums: AlbumUpdateManyWithoutArtistsInput
+  recordings: RecordingUpdateManyWithoutArtistInput
+}
+
+input ArtistUpdateManyDataInput {
+  name: String
+}
+
+input ArtistUpdateManyMutationInput {
+  name: String
+}
+
+input ArtistUpdateManyWithoutAlbumsInput {
+  create: [ArtistCreateWithoutAlbumsInput!]
+  delete: [ArtistWhereUniqueInput!]
+  connect: [ArtistWhereUniqueInput!]
+  set: [ArtistWhereUniqueInput!]
+  disconnect: [ArtistWhereUniqueInput!]
+  update: [ArtistUpdateWithWhereUniqueWithoutAlbumsInput!]
+  upsert: [ArtistUpsertWithWhereUniqueWithoutAlbumsInput!]
+  deleteMany: [ArtistScalarWhereInput!]
+  updateMany: [ArtistUpdateManyWithWhereNestedInput!]
+}
+
+input ArtistUpdateManyWithoutSongsInput {
+  create: [ArtistCreateWithoutSongsInput!]
+  delete: [ArtistWhereUniqueInput!]
+  connect: [ArtistWhereUniqueInput!]
+  set: [ArtistWhereUniqueInput!]
+  disconnect: [ArtistWhereUniqueInput!]
+  update: [ArtistUpdateWithWhereUniqueWithoutSongsInput!]
+  upsert: [ArtistUpsertWithWhereUniqueWithoutSongsInput!]
+  deleteMany: [ArtistScalarWhereInput!]
+  updateMany: [ArtistUpdateManyWithWhereNestedInput!]
+}
+
+input ArtistUpdateManyWithWhereNestedInput {
+  where: ArtistScalarWhereInput!
+  data: ArtistUpdateManyDataInput!
+}
+
+input ArtistUpdateOneWithoutRecordingsInput {
+  create: ArtistCreateWithoutRecordingsInput
+  update: ArtistUpdateWithoutRecordingsDataInput
+  upsert: ArtistUpsertWithoutRecordingsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ArtistWhereUniqueInput
+}
+
+input ArtistUpdateWithoutAlbumsDataInput {
+  name: String
+  songs: SongUpdateManyWithoutArtistsInput
+  recordings: RecordingUpdateManyWithoutArtistInput
+}
+
+input ArtistUpdateWithoutRecordingsDataInput {
+  name: String
+  songs: SongUpdateManyWithoutArtistsInput
+  albums: AlbumUpdateManyWithoutArtistsInput
+}
+
+input ArtistUpdateWithoutSongsDataInput {
+  name: String
+  albums: AlbumUpdateManyWithoutArtistsInput
+  recordings: RecordingUpdateManyWithoutArtistInput
+}
+
+input ArtistUpdateWithWhereUniqueWithoutAlbumsInput {
+  where: ArtistWhereUniqueInput!
+  data: ArtistUpdateWithoutAlbumsDataInput!
+}
+
+input ArtistUpdateWithWhereUniqueWithoutSongsInput {
+  where: ArtistWhereUniqueInput!
+  data: ArtistUpdateWithoutSongsDataInput!
+}
+
+input ArtistUpsertWithoutRecordingsInput {
+  update: ArtistUpdateWithoutRecordingsDataInput!
+  create: ArtistCreateWithoutRecordingsInput!
+}
+
+input ArtistUpsertWithWhereUniqueWithoutAlbumsInput {
+  where: ArtistWhereUniqueInput!
+  update: ArtistUpdateWithoutAlbumsDataInput!
+  create: ArtistCreateWithoutAlbumsInput!
+}
+
+input ArtistUpsertWithWhereUniqueWithoutSongsInput {
+  where: ArtistWhereUniqueInput!
+  update: ArtistUpdateWithoutSongsDataInput!
+  create: ArtistCreateWithoutSongsInput!
+}
+
+input ArtistWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  songs_every: SongWhereInput
+  songs_some: SongWhereInput
+  songs_none: SongWhereInput
+  albums_every: AlbumWhereInput
+  albums_some: AlbumWhereInput
+  albums_none: AlbumWhereInput
+  recordings_every: RecordingWhereInput
+  recordings_some: RecordingWhereInput
+  recordings_none: RecordingWhereInput
+  AND: [ArtistWhereInput!]
+  OR: [ArtistWhereInput!]
+  NOT: [ArtistWhereInput!]
+}
+
+input ArtistWhereUniqueInput {
+  id: ID
+  name: String
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type Composer {
+  id: ID!
+  name: String
+  songs(where: SongWhereInput, orderBy: SongOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Song!]
+}
+
+type ComposerConnection {
+  pageInfo: PageInfo!
+  edges: [ComposerEdge]!
+  aggregate: AggregateComposer!
+}
+
+input ComposerCreateInput {
+  id: ID
+  name: String
+  songs: SongCreateManyWithoutComposerInput
+}
+
+input ComposerCreateManyWithoutSongsInput {
+  create: [ComposerCreateWithoutSongsInput!]
+  connect: [ComposerWhereUniqueInput!]
+}
+
+input ComposerCreateWithoutSongsInput {
+  id: ID
+  name: String
+}
+
+type ComposerEdge {
+  node: Composer!
+  cursor: String!
+}
+
+enum ComposerOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type ComposerPreviousValues {
+  id: ID!
+  name: String
+}
+
+input ComposerScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [ComposerScalarWhereInput!]
+  OR: [ComposerScalarWhereInput!]
+  NOT: [ComposerScalarWhereInput!]
+}
+
+type ComposerSubscriptionPayload {
+  mutation: MutationType!
+  node: Composer
+  updatedFields: [String!]
+  previousValues: ComposerPreviousValues
+}
+
+input ComposerSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ComposerWhereInput
+  AND: [ComposerSubscriptionWhereInput!]
+  OR: [ComposerSubscriptionWhereInput!]
+  NOT: [ComposerSubscriptionWhereInput!]
+}
+
+input ComposerUpdateInput {
+  name: String
+  songs: SongUpdateManyWithoutComposerInput
+}
+
+input ComposerUpdateManyDataInput {
+  name: String
+}
+
+input ComposerUpdateManyMutationInput {
+  name: String
+}
+
+input ComposerUpdateManyWithoutSongsInput {
+  create: [ComposerCreateWithoutSongsInput!]
+  delete: [ComposerWhereUniqueInput!]
+  connect: [ComposerWhereUniqueInput!]
+  set: [ComposerWhereUniqueInput!]
+  disconnect: [ComposerWhereUniqueInput!]
+  update: [ComposerUpdateWithWhereUniqueWithoutSongsInput!]
+  upsert: [ComposerUpsertWithWhereUniqueWithoutSongsInput!]
+  deleteMany: [ComposerScalarWhereInput!]
+  updateMany: [ComposerUpdateManyWithWhereNestedInput!]
+}
+
+input ComposerUpdateManyWithWhereNestedInput {
+  where: ComposerScalarWhereInput!
+  data: ComposerUpdateManyDataInput!
+}
+
+input ComposerUpdateWithoutSongsDataInput {
+  name: String
+}
+
+input ComposerUpdateWithWhereUniqueWithoutSongsInput {
+  where: ComposerWhereUniqueInput!
+  data: ComposerUpdateWithoutSongsDataInput!
+}
+
+input ComposerUpsertWithWhereUniqueWithoutSongsInput {
+  where: ComposerWhereUniqueInput!
+  update: ComposerUpdateWithoutSongsDataInput!
+  create: ComposerCreateWithoutSongsInput!
+}
+
+input ComposerWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  songs_every: SongWhereInput
+  songs_some: SongWhereInput
+  songs_none: SongWhereInput
+  AND: [ComposerWhereInput!]
+  OR: [ComposerWhereInput!]
+  NOT: [ComposerWhereInput!]
+}
+
+input ComposerWhereUniqueInput {
+  id: ID
+  name: String
+}
+
+scalar DateTime
+
+scalar Long
+
+type Mutation {
+  createAlbum(data: AlbumCreateInput!): Album!
+  updateAlbum(data: AlbumUpdateInput!, where: AlbumWhereUniqueInput!): Album
+  updateManyAlbums(data: AlbumUpdateManyMutationInput!, where: AlbumWhereInput): BatchPayload!
+  upsertAlbum(where: AlbumWhereUniqueInput!, create: AlbumCreateInput!, update: AlbumUpdateInput!): Album!
+  deleteAlbum(where: AlbumWhereUniqueInput!): Album
+  deleteManyAlbums(where: AlbumWhereInput): BatchPayload!
+  createArtist(data: ArtistCreateInput!): Artist!
+  updateArtist(data: ArtistUpdateInput!, where: ArtistWhereUniqueInput!): Artist
+  updateManyArtists(data: ArtistUpdateManyMutationInput!, where: ArtistWhereInput): BatchPayload!
+  upsertArtist(where: ArtistWhereUniqueInput!, create: ArtistCreateInput!, update: ArtistUpdateInput!): Artist!
+  deleteArtist(where: ArtistWhereUniqueInput!): Artist
+  deleteManyArtists(where: ArtistWhereInput): BatchPayload!
+  createComposer(data: ComposerCreateInput!): Composer!
+  updateComposer(data: ComposerUpdateInput!, where: ComposerWhereUniqueInput!): Composer
+  updateManyComposers(data: ComposerUpdateManyMutationInput!, where: ComposerWhereInput): BatchPayload!
+  upsertComposer(where: ComposerWhereUniqueInput!, create: ComposerCreateInput!, update: ComposerUpdateInput!): Composer!
+  deleteComposer(where: ComposerWhereUniqueInput!): Composer
+  deleteManyComposers(where: ComposerWhereInput): BatchPayload!
+  createProducer(data: ProducerCreateInput!): Producer!
+  updateProducer(data: ProducerUpdateInput!, where: ProducerWhereUniqueInput!): Producer
+  updateManyProducers(data: ProducerUpdateManyMutationInput!, where: ProducerWhereInput): BatchPayload!
+  upsertProducer(where: ProducerWhereUniqueInput!, create: ProducerCreateInput!, update: ProducerUpdateInput!): Producer!
+  deleteProducer(where: ProducerWhereUniqueInput!): Producer
+  deleteManyProducers(where: ProducerWhereInput): BatchPayload!
+  createRecording(data: RecordingCreateInput!): Recording!
+  updateRecording(data: RecordingUpdateInput!, where: RecordingWhereUniqueInput!): Recording
+  updateManyRecordings(data: RecordingUpdateManyMutationInput!, where: RecordingWhereInput): BatchPayload!
+  upsertRecording(where: RecordingWhereUniqueInput!, create: RecordingCreateInput!, update: RecordingUpdateInput!): Recording!
+  deleteRecording(where: RecordingWhereUniqueInput!): Recording
+  deleteManyRecordings(where: RecordingWhereInput): BatchPayload!
+  createSong(data: SongCreateInput!): Song!
+  updateSong(data: SongUpdateInput!, where: SongWhereUniqueInput!): Song
+  updateManySongs(data: SongUpdateManyMutationInput!, where: SongWhereInput): BatchPayload!
+  upsertSong(where: SongWhereUniqueInput!, create: SongCreateInput!, update: SongUpdateInput!): Song!
+  deleteSong(where: SongWhereUniqueInput!): Song
+  deleteManySongs(where: SongWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+enum Permission {
+  ADMIN
+  USER
+  SONGUPDATE
+  SONGDELETE
+  PERMISSIONUPDATE
+}
+
+type Producer {
+  id: ID!
+  name: String
+  recordings(where: RecordingWhereInput, orderBy: RecordingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recording!]
+}
+
+type ProducerConnection {
+  pageInfo: PageInfo!
+  edges: [ProducerEdge]!
+  aggregate: AggregateProducer!
+}
+
+input ProducerCreateInput {
+  id: ID
+  name: String
+  recordings: RecordingCreateManyInput
+}
+
+type ProducerEdge {
+  node: Producer!
+  cursor: String!
+}
+
+enum ProducerOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type ProducerPreviousValues {
+  id: ID!
+  name: String
+}
+
+type ProducerSubscriptionPayload {
+  mutation: MutationType!
+  node: Producer
+  updatedFields: [String!]
+  previousValues: ProducerPreviousValues
+}
+
+input ProducerSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProducerWhereInput
+  AND: [ProducerSubscriptionWhereInput!]
+  OR: [ProducerSubscriptionWhereInput!]
+  NOT: [ProducerSubscriptionWhereInput!]
+}
+
+input ProducerUpdateInput {
+  name: String
+  recordings: RecordingUpdateManyInput
+}
+
+input ProducerUpdateManyMutationInput {
+  name: String
+}
+
+input ProducerWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  recordings_every: RecordingWhereInput
+  recordings_some: RecordingWhereInput
+  recordings_none: RecordingWhereInput
+  AND: [ProducerWhereInput!]
+  OR: [ProducerWhereInput!]
+  NOT: [ProducerWhereInput!]
+}
+
+input ProducerWhereUniqueInput {
+  id: ID
+}
+
+type Query {
+  album(where: AlbumWhereUniqueInput!): Album
+  albums(where: AlbumWhereInput, orderBy: AlbumOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Album]!
+  albumsConnection(where: AlbumWhereInput, orderBy: AlbumOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AlbumConnection!
+  artist(where: ArtistWhereUniqueInput!): Artist
+  artists(where: ArtistWhereInput, orderBy: ArtistOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Artist]!
+  artistsConnection(where: ArtistWhereInput, orderBy: ArtistOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ArtistConnection!
+  composer(where: ComposerWhereUniqueInput!): Composer
+  composers(where: ComposerWhereInput, orderBy: ComposerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Composer]!
+  composersConnection(where: ComposerWhereInput, orderBy: ComposerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ComposerConnection!
+  producer(where: ProducerWhereUniqueInput!): Producer
+  producers(where: ProducerWhereInput, orderBy: ProducerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Producer]!
+  producersConnection(where: ProducerWhereInput, orderBy: ProducerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProducerConnection!
+  recording(where: RecordingWhereUniqueInput!): Recording
+  recordings(where: RecordingWhereInput, orderBy: RecordingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recording]!
+  recordingsConnection(where: RecordingWhereInput, orderBy: RecordingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RecordingConnection!
+  song(where: SongWhereUniqueInput!): Song
+  songs(where: SongWhereInput, orderBy: SongOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Song]!
+  songsConnection(where: SongWhereInput, orderBy: SongOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SongConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
+type Recording {
+  id: ID!
+  producer: String
+  location: String
+  completed: DateTime
+  artist: Artist
+  song: Song!
+  albums(where: AlbumWhereInput, orderBy: AlbumOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Album!]
+}
+
+type RecordingConnection {
+  pageInfo: PageInfo!
+  edges: [RecordingEdge]!
+  aggregate: AggregateRecording!
+}
+
+input RecordingCreateInput {
+  id: ID
+  producer: String
+  location: String
+  completed: DateTime
+  artist: ArtistCreateOneWithoutRecordingsInput
+  song: SongCreateOneWithoutRecordingsInput!
+  albums: AlbumCreateManyWithoutRecordingsInput
+}
+
+input RecordingCreateManyInput {
+  create: [RecordingCreateInput!]
+  connect: [RecordingWhereUniqueInput!]
+}
+
+input RecordingCreateManyWithoutAlbumsInput {
+  create: [RecordingCreateWithoutAlbumsInput!]
+  connect: [RecordingWhereUniqueInput!]
+}
+
+input RecordingCreateManyWithoutArtistInput {
+  create: [RecordingCreateWithoutArtistInput!]
+  connect: [RecordingWhereUniqueInput!]
+}
+
+input RecordingCreateManyWithoutSongInput {
+  create: [RecordingCreateWithoutSongInput!]
+  connect: [RecordingWhereUniqueInput!]
+}
+
+input RecordingCreateWithoutAlbumsInput {
+  id: ID
+  producer: String
+  location: String
+  completed: DateTime
+  artist: ArtistCreateOneWithoutRecordingsInput
+  song: SongCreateOneWithoutRecordingsInput!
+}
+
+input RecordingCreateWithoutArtistInput {
+  id: ID
+  producer: String
+  location: String
+  completed: DateTime
+  song: SongCreateOneWithoutRecordingsInput!
+  albums: AlbumCreateManyWithoutRecordingsInput
+}
+
+input RecordingCreateWithoutSongInput {
+  id: ID
+  producer: String
+  location: String
+  completed: DateTime
+  artist: ArtistCreateOneWithoutRecordingsInput
+  albums: AlbumCreateManyWithoutRecordingsInput
+}
+
+type RecordingEdge {
+  node: Recording!
+  cursor: String!
+}
+
+enum RecordingOrderByInput {
+  id_ASC
+  id_DESC
+  producer_ASC
+  producer_DESC
+  location_ASC
+  location_DESC
+  completed_ASC
+  completed_DESC
+}
+
+type RecordingPreviousValues {
+  id: ID!
+  producer: String
+  location: String
+  completed: DateTime
+}
+
+input RecordingScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  producer: String
+  producer_not: String
+  producer_in: [String!]
+  producer_not_in: [String!]
+  producer_lt: String
+  producer_lte: String
+  producer_gt: String
+  producer_gte: String
+  producer_contains: String
+  producer_not_contains: String
+  producer_starts_with: String
+  producer_not_starts_with: String
+  producer_ends_with: String
+  producer_not_ends_with: String
+  location: String
+  location_not: String
+  location_in: [String!]
+  location_not_in: [String!]
+  location_lt: String
+  location_lte: String
+  location_gt: String
+  location_gte: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
+  completed: DateTime
+  completed_not: DateTime
+  completed_in: [DateTime!]
+  completed_not_in: [DateTime!]
+  completed_lt: DateTime
+  completed_lte: DateTime
+  completed_gt: DateTime
+  completed_gte: DateTime
+  AND: [RecordingScalarWhereInput!]
+  OR: [RecordingScalarWhereInput!]
+  NOT: [RecordingScalarWhereInput!]
+}
+
+type RecordingSubscriptionPayload {
+  mutation: MutationType!
+  node: Recording
+  updatedFields: [String!]
+  previousValues: RecordingPreviousValues
+}
+
+input RecordingSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: RecordingWhereInput
+  AND: [RecordingSubscriptionWhereInput!]
+  OR: [RecordingSubscriptionWhereInput!]
+  NOT: [RecordingSubscriptionWhereInput!]
+}
+
+input RecordingUpdateDataInput {
+  producer: String
+  location: String
+  completed: DateTime
+  artist: ArtistUpdateOneWithoutRecordingsInput
+  song: SongUpdateOneRequiredWithoutRecordingsInput
+  albums: AlbumUpdateManyWithoutRecordingsInput
+}
+
+input RecordingUpdateInput {
+  producer: String
+  location: String
+  completed: DateTime
+  artist: ArtistUpdateOneWithoutRecordingsInput
+  song: SongUpdateOneRequiredWithoutRecordingsInput
+  albums: AlbumUpdateManyWithoutRecordingsInput
+}
+
+input RecordingUpdateManyDataInput {
+  producer: String
+  location: String
+  completed: DateTime
+}
+
+input RecordingUpdateManyInput {
+  create: [RecordingCreateInput!]
+  update: [RecordingUpdateWithWhereUniqueNestedInput!]
+  upsert: [RecordingUpsertWithWhereUniqueNestedInput!]
+  delete: [RecordingWhereUniqueInput!]
+  connect: [RecordingWhereUniqueInput!]
+  set: [RecordingWhereUniqueInput!]
+  disconnect: [RecordingWhereUniqueInput!]
+  deleteMany: [RecordingScalarWhereInput!]
+  updateMany: [RecordingUpdateManyWithWhereNestedInput!]
+}
+
+input RecordingUpdateManyMutationInput {
+  producer: String
+  location: String
+  completed: DateTime
+}
+
+input RecordingUpdateManyWithoutAlbumsInput {
+  create: [RecordingCreateWithoutAlbumsInput!]
+  delete: [RecordingWhereUniqueInput!]
+  connect: [RecordingWhereUniqueInput!]
+  set: [RecordingWhereUniqueInput!]
+  disconnect: [RecordingWhereUniqueInput!]
+  update: [RecordingUpdateWithWhereUniqueWithoutAlbumsInput!]
+  upsert: [RecordingUpsertWithWhereUniqueWithoutAlbumsInput!]
+  deleteMany: [RecordingScalarWhereInput!]
+  updateMany: [RecordingUpdateManyWithWhereNestedInput!]
+}
+
+input RecordingUpdateManyWithoutArtistInput {
+  create: [RecordingCreateWithoutArtistInput!]
+  delete: [RecordingWhereUniqueInput!]
+  connect: [RecordingWhereUniqueInput!]
+  set: [RecordingWhereUniqueInput!]
+  disconnect: [RecordingWhereUniqueInput!]
+  update: [RecordingUpdateWithWhereUniqueWithoutArtistInput!]
+  upsert: [RecordingUpsertWithWhereUniqueWithoutArtistInput!]
+  deleteMany: [RecordingScalarWhereInput!]
+  updateMany: [RecordingUpdateManyWithWhereNestedInput!]
+}
+
+input RecordingUpdateManyWithoutSongInput {
+  create: [RecordingCreateWithoutSongInput!]
+  delete: [RecordingWhereUniqueInput!]
+  connect: [RecordingWhereUniqueInput!]
+  set: [RecordingWhereUniqueInput!]
+  disconnect: [RecordingWhereUniqueInput!]
+  update: [RecordingUpdateWithWhereUniqueWithoutSongInput!]
+  upsert: [RecordingUpsertWithWhereUniqueWithoutSongInput!]
+  deleteMany: [RecordingScalarWhereInput!]
+  updateMany: [RecordingUpdateManyWithWhereNestedInput!]
+}
+
+input RecordingUpdateManyWithWhereNestedInput {
+  where: RecordingScalarWhereInput!
+  data: RecordingUpdateManyDataInput!
+}
+
+input RecordingUpdateWithoutAlbumsDataInput {
+  producer: String
+  location: String
+  completed: DateTime
+  artist: ArtistUpdateOneWithoutRecordingsInput
+  song: SongUpdateOneRequiredWithoutRecordingsInput
+}
+
+input RecordingUpdateWithoutArtistDataInput {
+  producer: String
+  location: String
+  completed: DateTime
+  song: SongUpdateOneRequiredWithoutRecordingsInput
+  albums: AlbumUpdateManyWithoutRecordingsInput
+}
+
+input RecordingUpdateWithoutSongDataInput {
+  producer: String
+  location: String
+  completed: DateTime
+  artist: ArtistUpdateOneWithoutRecordingsInput
+  albums: AlbumUpdateManyWithoutRecordingsInput
+}
+
+input RecordingUpdateWithWhereUniqueNestedInput {
+  where: RecordingWhereUniqueInput!
+  data: RecordingUpdateDataInput!
+}
+
+input RecordingUpdateWithWhereUniqueWithoutAlbumsInput {
+  where: RecordingWhereUniqueInput!
+  data: RecordingUpdateWithoutAlbumsDataInput!
+}
+
+input RecordingUpdateWithWhereUniqueWithoutArtistInput {
+  where: RecordingWhereUniqueInput!
+  data: RecordingUpdateWithoutArtistDataInput!
+}
+
+input RecordingUpdateWithWhereUniqueWithoutSongInput {
+  where: RecordingWhereUniqueInput!
+  data: RecordingUpdateWithoutSongDataInput!
+}
+
+input RecordingUpsertWithWhereUniqueNestedInput {
+  where: RecordingWhereUniqueInput!
+  update: RecordingUpdateDataInput!
+  create: RecordingCreateInput!
+}
+
+input RecordingUpsertWithWhereUniqueWithoutAlbumsInput {
+  where: RecordingWhereUniqueInput!
+  update: RecordingUpdateWithoutAlbumsDataInput!
+  create: RecordingCreateWithoutAlbumsInput!
+}
+
+input RecordingUpsertWithWhereUniqueWithoutArtistInput {
+  where: RecordingWhereUniqueInput!
+  update: RecordingUpdateWithoutArtistDataInput!
+  create: RecordingCreateWithoutArtistInput!
+}
+
+input RecordingUpsertWithWhereUniqueWithoutSongInput {
+  where: RecordingWhereUniqueInput!
+  update: RecordingUpdateWithoutSongDataInput!
+  create: RecordingCreateWithoutSongInput!
+}
+
+input RecordingWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  producer: String
+  producer_not: String
+  producer_in: [String!]
+  producer_not_in: [String!]
+  producer_lt: String
+  producer_lte: String
+  producer_gt: String
+  producer_gte: String
+  producer_contains: String
+  producer_not_contains: String
+  producer_starts_with: String
+  producer_not_starts_with: String
+  producer_ends_with: String
+  producer_not_ends_with: String
+  location: String
+  location_not: String
+  location_in: [String!]
+  location_not_in: [String!]
+  location_lt: String
+  location_lte: String
+  location_gt: String
+  location_gte: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
+  completed: DateTime
+  completed_not: DateTime
+  completed_in: [DateTime!]
+  completed_not_in: [DateTime!]
+  completed_lt: DateTime
+  completed_lte: DateTime
+  completed_gt: DateTime
+  completed_gte: DateTime
+  artist: ArtistWhereInput
+  song: SongWhereInput
+  albums_every: AlbumWhereInput
+  albums_some: AlbumWhereInput
+  albums_none: AlbumWhereInput
+  AND: [RecordingWhereInput!]
+  OR: [RecordingWhereInput!]
+  NOT: [RecordingWhereInput!]
+}
+
+input RecordingWhereUniqueInput {
+  id: ID
+}
+
+type Song {
+  id: ID!
+  title: String!
+  composer(where: ComposerWhereInput, orderBy: ComposerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Composer!]
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  artists(where: ArtistWhereInput, orderBy: ArtistOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Artist!]
+  albums(where: AlbumWhereInput, orderBy: AlbumOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Album!]
+  recordings(where: RecordingWhereInput, orderBy: RecordingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recording!]
+}
+
+type SongConnection {
+  pageInfo: PageInfo!
+  edges: [SongEdge]!
+  aggregate: AggregateSong!
+}
+
+input SongCreateInput {
+  id: ID
+  title: String!
+  composer: ComposerCreateManyWithoutSongsInput
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  artists: ArtistCreateManyWithoutSongsInput
+  albums: AlbumCreateManyWithoutSongsInput
+  recordings: RecordingCreateManyWithoutSongInput
+}
+
+input SongCreateManyWithoutAlbumsInput {
+  create: [SongCreateWithoutAlbumsInput!]
+  connect: [SongWhereUniqueInput!]
+}
+
+input SongCreateManyWithoutArtistsInput {
+  create: [SongCreateWithoutArtistsInput!]
+  connect: [SongWhereUniqueInput!]
+}
+
+input SongCreateManyWithoutComposerInput {
+  create: [SongCreateWithoutComposerInput!]
+  connect: [SongWhereUniqueInput!]
+}
+
+input SongCreateOneWithoutRecordingsInput {
+  create: SongCreateWithoutRecordingsInput
+  connect: SongWhereUniqueInput
+}
+
+input SongCreateWithoutAlbumsInput {
+  id: ID
+  title: String!
+  composer: ComposerCreateManyWithoutSongsInput
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  artists: ArtistCreateManyWithoutSongsInput
+  recordings: RecordingCreateManyWithoutSongInput
+}
+
+input SongCreateWithoutArtistsInput {
+  id: ID
+  title: String!
+  composer: ComposerCreateManyWithoutSongsInput
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  albums: AlbumCreateManyWithoutSongsInput
+  recordings: RecordingCreateManyWithoutSongInput
+}
+
+input SongCreateWithoutComposerInput {
+  id: ID
+  title: String!
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  artists: ArtistCreateManyWithoutSongsInput
+  albums: AlbumCreateManyWithoutSongsInput
+  recordings: RecordingCreateManyWithoutSongInput
+}
+
+input SongCreateWithoutRecordingsInput {
+  id: ID
+  title: String!
+  composer: ComposerCreateManyWithoutSongsInput
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  artists: ArtistCreateManyWithoutSongsInput
+  albums: AlbumCreateManyWithoutSongsInput
+}
+
+type SongEdge {
+  node: Song!
+  cursor: String!
+}
+
+enum SongOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  publisher_ASC
+  publisher_DESC
+  publishedDate_ASC
+  publishedDate_DESC
+  altTitle_ASC
+  altTitle_DESC
+  instrumental_ASC
+  instrumental_DESC
+  fromFilm_ASC
+  fromFilm_DESC
+  tribute_ASC
+  tribute_DESC
+}
+
+type SongPreviousValues {
+  id: ID!
+  title: String!
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+}
+
+input SongScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  publisher: String
+  publisher_not: String
+  publisher_in: [String!]
+  publisher_not_in: [String!]
+  publisher_lt: String
+  publisher_lte: String
+  publisher_gt: String
+  publisher_gte: String
+  publisher_contains: String
+  publisher_not_contains: String
+  publisher_starts_with: String
+  publisher_not_starts_with: String
+  publisher_ends_with: String
+  publisher_not_ends_with: String
+  publishedDate: DateTime
+  publishedDate_not: DateTime
+  publishedDate_in: [DateTime!]
+  publishedDate_not_in: [DateTime!]
+  publishedDate_lt: DateTime
+  publishedDate_lte: DateTime
+  publishedDate_gt: DateTime
+  publishedDate_gte: DateTime
+  altTitle: String
+  altTitle_not: String
+  altTitle_in: [String!]
+  altTitle_not_in: [String!]
+  altTitle_lt: String
+  altTitle_lte: String
+  altTitle_gt: String
+  altTitle_gte: String
+  altTitle_contains: String
+  altTitle_not_contains: String
+  altTitle_starts_with: String
+  altTitle_not_starts_with: String
+  altTitle_ends_with: String
+  altTitle_not_ends_with: String
+  instrumental: Boolean
+  instrumental_not: Boolean
+  fromFilm: String
+  fromFilm_not: String
+  fromFilm_in: [String!]
+  fromFilm_not_in: [String!]
+  fromFilm_lt: String
+  fromFilm_lte: String
+  fromFilm_gt: String
+  fromFilm_gte: String
+  fromFilm_contains: String
+  fromFilm_not_contains: String
+  fromFilm_starts_with: String
+  fromFilm_not_starts_with: String
+  fromFilm_ends_with: String
+  fromFilm_not_ends_with: String
+  tribute: String
+  tribute_not: String
+  tribute_in: [String!]
+  tribute_not_in: [String!]
+  tribute_lt: String
+  tribute_lte: String
+  tribute_gt: String
+  tribute_gte: String
+  tribute_contains: String
+  tribute_not_contains: String
+  tribute_starts_with: String
+  tribute_not_starts_with: String
+  tribute_ends_with: String
+  tribute_not_ends_with: String
+  AND: [SongScalarWhereInput!]
+  OR: [SongScalarWhereInput!]
+  NOT: [SongScalarWhereInput!]
+}
+
+type SongSubscriptionPayload {
+  mutation: MutationType!
+  node: Song
+  updatedFields: [String!]
+  previousValues: SongPreviousValues
+}
+
+input SongSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SongWhereInput
+  AND: [SongSubscriptionWhereInput!]
+  OR: [SongSubscriptionWhereInput!]
+  NOT: [SongSubscriptionWhereInput!]
+}
+
+input SongUpdateInput {
+  title: String
+  composer: ComposerUpdateManyWithoutSongsInput
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  artists: ArtistUpdateManyWithoutSongsInput
+  albums: AlbumUpdateManyWithoutSongsInput
+  recordings: RecordingUpdateManyWithoutSongInput
+}
+
+input SongUpdateManyDataInput {
+  title: String
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+}
+
+input SongUpdateManyMutationInput {
+  title: String
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+}
+
+input SongUpdateManyWithoutAlbumsInput {
+  create: [SongCreateWithoutAlbumsInput!]
+  delete: [SongWhereUniqueInput!]
+  connect: [SongWhereUniqueInput!]
+  set: [SongWhereUniqueInput!]
+  disconnect: [SongWhereUniqueInput!]
+  update: [SongUpdateWithWhereUniqueWithoutAlbumsInput!]
+  upsert: [SongUpsertWithWhereUniqueWithoutAlbumsInput!]
+  deleteMany: [SongScalarWhereInput!]
+  updateMany: [SongUpdateManyWithWhereNestedInput!]
+}
+
+input SongUpdateManyWithoutArtistsInput {
+  create: [SongCreateWithoutArtistsInput!]
+  delete: [SongWhereUniqueInput!]
+  connect: [SongWhereUniqueInput!]
+  set: [SongWhereUniqueInput!]
+  disconnect: [SongWhereUniqueInput!]
+  update: [SongUpdateWithWhereUniqueWithoutArtistsInput!]
+  upsert: [SongUpsertWithWhereUniqueWithoutArtistsInput!]
+  deleteMany: [SongScalarWhereInput!]
+  updateMany: [SongUpdateManyWithWhereNestedInput!]
+}
+
+input SongUpdateManyWithoutComposerInput {
+  create: [SongCreateWithoutComposerInput!]
+  delete: [SongWhereUniqueInput!]
+  connect: [SongWhereUniqueInput!]
+  set: [SongWhereUniqueInput!]
+  disconnect: [SongWhereUniqueInput!]
+  update: [SongUpdateWithWhereUniqueWithoutComposerInput!]
+  upsert: [SongUpsertWithWhereUniqueWithoutComposerInput!]
+  deleteMany: [SongScalarWhereInput!]
+  updateMany: [SongUpdateManyWithWhereNestedInput!]
+}
+
+input SongUpdateManyWithWhereNestedInput {
+  where: SongScalarWhereInput!
+  data: SongUpdateManyDataInput!
+}
+
+input SongUpdateOneRequiredWithoutRecordingsInput {
+  create: SongCreateWithoutRecordingsInput
+  update: SongUpdateWithoutRecordingsDataInput
+  upsert: SongUpsertWithoutRecordingsInput
+  connect: SongWhereUniqueInput
+}
+
+input SongUpdateWithoutAlbumsDataInput {
+  title: String
+  composer: ComposerUpdateManyWithoutSongsInput
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  artists: ArtistUpdateManyWithoutSongsInput
+  recordings: RecordingUpdateManyWithoutSongInput
+}
+
+input SongUpdateWithoutArtistsDataInput {
+  title: String
+  composer: ComposerUpdateManyWithoutSongsInput
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  albums: AlbumUpdateManyWithoutSongsInput
+  recordings: RecordingUpdateManyWithoutSongInput
+}
+
+input SongUpdateWithoutComposerDataInput {
+  title: String
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  artists: ArtistUpdateManyWithoutSongsInput
+  albums: AlbumUpdateManyWithoutSongsInput
+  recordings: RecordingUpdateManyWithoutSongInput
+}
+
+input SongUpdateWithoutRecordingsDataInput {
+  title: String
+  composer: ComposerUpdateManyWithoutSongsInput
+  publisher: String
+  publishedDate: DateTime
+  altTitle: String
+  instrumental: Boolean
+  fromFilm: String
+  tribute: String
+  artists: ArtistUpdateManyWithoutSongsInput
+  albums: AlbumUpdateManyWithoutSongsInput
+}
+
+input SongUpdateWithWhereUniqueWithoutAlbumsInput {
+  where: SongWhereUniqueInput!
+  data: SongUpdateWithoutAlbumsDataInput!
+}
+
+input SongUpdateWithWhereUniqueWithoutArtistsInput {
+  where: SongWhereUniqueInput!
+  data: SongUpdateWithoutArtistsDataInput!
+}
+
+input SongUpdateWithWhereUniqueWithoutComposerInput {
+  where: SongWhereUniqueInput!
+  data: SongUpdateWithoutComposerDataInput!
+}
+
+input SongUpsertWithoutRecordingsInput {
+  update: SongUpdateWithoutRecordingsDataInput!
+  create: SongCreateWithoutRecordingsInput!
+}
+
+input SongUpsertWithWhereUniqueWithoutAlbumsInput {
+  where: SongWhereUniqueInput!
+  update: SongUpdateWithoutAlbumsDataInput!
+  create: SongCreateWithoutAlbumsInput!
+}
+
+input SongUpsertWithWhereUniqueWithoutArtistsInput {
+  where: SongWhereUniqueInput!
+  update: SongUpdateWithoutArtistsDataInput!
+  create: SongCreateWithoutArtistsInput!
+}
+
+input SongUpsertWithWhereUniqueWithoutComposerInput {
+  where: SongWhereUniqueInput!
+  update: SongUpdateWithoutComposerDataInput!
+  create: SongCreateWithoutComposerInput!
+}
+
+input SongWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  composer_every: ComposerWhereInput
+  composer_some: ComposerWhereInput
+  composer_none: ComposerWhereInput
+  publisher: String
+  publisher_not: String
+  publisher_in: [String!]
+  publisher_not_in: [String!]
+  publisher_lt: String
+  publisher_lte: String
+  publisher_gt: String
+  publisher_gte: String
+  publisher_contains: String
+  publisher_not_contains: String
+  publisher_starts_with: String
+  publisher_not_starts_with: String
+  publisher_ends_with: String
+  publisher_not_ends_with: String
+  publishedDate: DateTime
+  publishedDate_not: DateTime
+  publishedDate_in: [DateTime!]
+  publishedDate_not_in: [DateTime!]
+  publishedDate_lt: DateTime
+  publishedDate_lte: DateTime
+  publishedDate_gt: DateTime
+  publishedDate_gte: DateTime
+  altTitle: String
+  altTitle_not: String
+  altTitle_in: [String!]
+  altTitle_not_in: [String!]
+  altTitle_lt: String
+  altTitle_lte: String
+  altTitle_gt: String
+  altTitle_gte: String
+  altTitle_contains: String
+  altTitle_not_contains: String
+  altTitle_starts_with: String
+  altTitle_not_starts_with: String
+  altTitle_ends_with: String
+  altTitle_not_ends_with: String
+  instrumental: Boolean
+  instrumental_not: Boolean
+  fromFilm: String
+  fromFilm_not: String
+  fromFilm_in: [String!]
+  fromFilm_not_in: [String!]
+  fromFilm_lt: String
+  fromFilm_lte: String
+  fromFilm_gt: String
+  fromFilm_gte: String
+  fromFilm_contains: String
+  fromFilm_not_contains: String
+  fromFilm_starts_with: String
+  fromFilm_not_starts_with: String
+  fromFilm_ends_with: String
+  fromFilm_not_ends_with: String
+  tribute: String
+  tribute_not: String
+  tribute_in: [String!]
+  tribute_not_in: [String!]
+  tribute_lt: String
+  tribute_lte: String
+  tribute_gt: String
+  tribute_gte: String
+  tribute_contains: String
+  tribute_not_contains: String
+  tribute_starts_with: String
+  tribute_not_starts_with: String
+  tribute_ends_with: String
+  tribute_not_ends_with: String
+  artists_every: ArtistWhereInput
+  artists_some: ArtistWhereInput
+  artists_none: ArtistWhereInput
+  albums_every: AlbumWhereInput
+  albums_some: AlbumWhereInput
+  albums_none: AlbumWhereInput
+  recordings_every: RecordingWhereInput
+  recordings_some: RecordingWhereInput
+  recordings_none: RecordingWhereInput
+  AND: [SongWhereInput!]
+  OR: [SongWhereInput!]
+  NOT: [SongWhereInput!]
+}
+
+input SongWhereUniqueInput {
+  id: ID
+}
+
+type Subscription {
+  album(where: AlbumSubscriptionWhereInput): AlbumSubscriptionPayload
+  artist(where: ArtistSubscriptionWhereInput): ArtistSubscriptionPayload
+  composer(where: ComposerSubscriptionWhereInput): ComposerSubscriptionPayload
+  producer(where: ProducerSubscriptionWhereInput): ProducerSubscriptionPayload
+  recording(where: RecordingSubscriptionWhereInput): RecordingSubscriptionPayload
+  song(where: SongSubscriptionWhereInput): SongSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission!]!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  name: String!
+  email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserCreatepermissionsInput
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission!]!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateInput {
+  name: String
+  email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateManyMutationInput {
+  name: String
+  email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  resetToken: String
+  resetToken_not: String
+  resetToken_in: [String!]
+  resetToken_not_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_contains: String
+  resetToken_not_contains: String
+  resetToken_starts_with: String
+  resetToken_not_starts_with: String
+  resetToken_ends_with: String
+  resetToken_not_ends_with: String
+  resetTokenExpiry: Float
+  resetTokenExpiry_not: Float
+  resetTokenExpiry_in: [Float!]
+  resetTokenExpiry_not_in: [Float!]
+  resetTokenExpiry_lt: Float
+  resetTokenExpiry_lte: Float
+  resetTokenExpiry_gt: Float
+  resetTokenExpiry_gte: Float
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}
