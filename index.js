@@ -30,11 +30,8 @@ server.express.use(async (req, res, next) => {
   next();
 });
 
-const port = process.env.PORT || 3000;
-
 //start it
 server.start(
-  port,
   {
     cors: {
       credentials: true,
