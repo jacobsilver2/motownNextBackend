@@ -1,6 +1,6 @@
 endpoint: ${env:PRISMA_ENDPOINT}
-datamodel: datamodel.prisma
 secret: ${env:PRISMA_SECRET}
+datamodel: datamodel.prisma
 generate:
   - generator: javascript-client
     output: ./generated/prisma-client/
@@ -8,4 +8,4 @@ generate:
     output: ./generated/prisma.graphql
 hooks:
   post-deploy:
-    - graphql get-schema --project prisma
+    - graphql get-schema --project motowndb

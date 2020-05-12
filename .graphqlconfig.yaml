@@ -1,0 +1,6 @@
+projects:
+  motowndb:
+    schemaPath: schema.graphql
+    extensions:
+      endpoints:
+        server: 'http://localhost:4466'
