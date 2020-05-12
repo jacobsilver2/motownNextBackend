@@ -88,3 +88,4 @@ type Query {
   composersConnection(where: ComposerWhereInput): ComposerConnection!
   me: User
 }
+
